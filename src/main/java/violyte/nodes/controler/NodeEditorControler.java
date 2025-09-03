@@ -71,6 +71,7 @@ public class NodeEditorControler {
             this.source = source;
         }
 
+        @Override
         public void handle(MouseEvent event) {
             source.startFullDrag();
             event.consume();
