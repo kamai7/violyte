@@ -1,29 +1,19 @@
 package violyte.nodes.view;
 
-import javafx.geometry.Insets;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-
-public class NodeBoxInput extends NodeBoxField {
-    private Circle circle;
-    private NodeWire wire;
-    
+public class NodeBoxInput extends NodeBoxField {    
     public NodeBoxInput(String labelText) {
         super(labelText);
+        /*DoubleBinding halfHeight = heightProperty().divide(2);
         
-        circle = new Circle(5);
-        circle.setFill(Color.WHITE);
-        circle.setStroke(Color.BLACK);
-        circle.setStrokeWidth(1);
-        setLeft(circle);
-        setMargin(circle, new Insets(0, 5, 0, 0));
-    }
+        getLabel().layoutXProperty().set(10);
+        getLabel().layoutYProperty().bind(halfHeight);
 
-    public Circle getCircle() {
-        return circle;
-    }
+        getHandle().layoutYProperty().bind(halfHeight);*/
 
-    public void setWire(NodeWire wire) {
-        this.wire = wire;
+        setLeftAnchor(getHandle(), -HANDLE_RADIUS);
+        setLeftAnchor(getLabel(), 10.0);
+
+        getHandle().getStyleClass().add("node-box-input-handle");
+        getStyleClass().add("node-box-input");
     }
 }

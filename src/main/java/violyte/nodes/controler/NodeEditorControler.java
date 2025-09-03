@@ -38,11 +38,11 @@ public class NodeEditorControler {
         nodeBox.setOnMousePressed(new MoveNodeHandler(nodeBox));
 
         for (NodeBoxOutput output : nodeBox.getOutputs()) {
-            output.getCircle().setOnDragDetected(new WireStartHandler(output));
+            output.getHandle().setOnDragDetected(new WireStartHandler(output));
         }
 
         for (NodeBoxInput input : nodeBox.getInputs()) {
-            input.getCircle().setOnMouseDragReleased(new WireEndHandler(input));
+            input.getHandle().setOnMouseDragReleased(new WireEndHandler(input));
         }
     }
 

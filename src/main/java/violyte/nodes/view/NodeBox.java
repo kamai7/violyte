@@ -3,6 +3,7 @@ package violyte.nodes.view;
 import java.util.ArrayList;
 
 import javafx.scene.control.Label;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class NodeBox extends VBox {
@@ -13,13 +14,18 @@ public class NodeBox extends VBox {
 
     public NodeBox(String title) {
         titleLabel = new Label(title);
-        titleLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
         fieldsBox = new VBox();
-        getChildren().addAll(titleLabel, fieldsBox);
-        setStyle("-fx-border-color: black; -fx-padding: 10;");
-
         inputs = new ArrayList<>();
         outputs = new ArrayList<>();
+
+        StackPane headerPane = new StackPane(titleLabel);
+        headerPane.getStyleClass().add("node-box-header");
+        titleLabel.getStyleClass().add("node-box-title");
+        fieldsBox.getStyleClass().add("node-box-content");
+        fieldsBox.setFillWidth(true);
+
+        getChildren().addAll(headerPane, fieldsBox);
+        getStyleClass().add("node-box");
     }
 
     /**

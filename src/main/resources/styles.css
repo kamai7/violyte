@@ -1,0 +1,28 @@
+.node-box {
+    -fx-background-color: #303030;
+    -fx-background-radius: 4;
+    -fx-effect: dropshadow(three-pass-box, black, 20, 0, 0, 2);
+}
+
+.node-box-header {
+    -fx-background-color: #eb4b3f;
+    -fx-background-radius: 4 4 0 0;
+}
+
+.node-box-title {
+    -fx-text-fill: white;
+}
+
+.node-box-field {
+    -fx-padding: 2 0 2 0;
+}
+
+.node-box-field .label {
+    -fx-text-fill: white;
+}
+
+.node-box-handle {
+    -fx-fill: #303030;
+    -fx-stroke: #ffffff80;
+    -fx-stroke-width: 1;
+}
