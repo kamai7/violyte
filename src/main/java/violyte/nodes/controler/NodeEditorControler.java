@@ -29,7 +29,7 @@ public class NodeEditorControler {
 
         // Set handlers for showing/hiding the add node menu
         view.getNodesPane().setOnMouseClicked(new ShowAddNodeHandler());
-        view.getSearchBox().setOnHiding(new HideAddNodeHandler());
+        view.getSearchBox().setOnHidden(new HideAddNodeHandler());
     }
 
     public void addNode(NodeBox nodeBox) {
@@ -38,11 +38,11 @@ public class NodeEditorControler {
         nodeBox.setOnMousePressed(new MoveNodeHandler(nodeBox));
 
         for (NodeBoxOutput output : nodeBox.getOutputs()) {
-            output.getCircle().setOnDragDetected(new WireStartHandler(output));
+            output.getHandle().setOnDragDetected(new WireStartHandler(output));
         }
 
         for (NodeBoxInput input : nodeBox.getInputs()) {
-            input.getCircle().setOnMouseDragReleased(new WireEndHandler(input));
+            input.getHandle().setOnMouseDragReleased(new WireEndHandler(input));
         }
     }
 
@@ -143,14 +143,26 @@ public class NodeEditorControler {
      * If a node is selected, it is added to the editor at the position of the combo box.
      */
     private class HideAddNodeHandler implements EventHandler<Event> {
+        private boolean hasBeenHandled = false;
+        
         public void handle(Event event) {
+            // Prevent duplicate execution
+            if (hasBeenHandled) return;
+            hasBeenHandled = true;
+            
             view.getSearchBox().setVisible(false);
 
             SearchableComboBox<Node<?>> comboBox = view.getSearchBox();
             Node<?> selectedNode = comboBox.getSelectionModel().getSelectedItem();
             if (selectedNode != null) {
                 addNode(selectedNode, comboBox.getLayoutX(), comboBox.getLayoutY());
+                comboBox.getSelectionModel().clearSelection();
             }
+            
+            // Reset flag after a short delay to allow for next usage
+            javafx.application.Platform.runLater(() -> hasBeenHandled = false);
+            
+            event.consume();
         }
     }
 }

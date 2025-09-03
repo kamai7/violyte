@@ -13,7 +13,6 @@ public class NodeBox extends VBox {
 
     public NodeBox(String title) {
         titleLabel = new Label(title);
-        titleLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
         fieldsBox = new VBox();
         getChildren().addAll(titleLabel, fieldsBox);
         setStyle("-fx-border-color: black; -fx-padding: 10;");

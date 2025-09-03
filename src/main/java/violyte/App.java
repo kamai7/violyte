@@ -1,6 +1,5 @@
 package violyte;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 import javafx.application.Application;
@@ -24,6 +23,7 @@ public class App extends Application {
 
         NodeEditorView editorView = new NodeEditorView();
         NodeEditorControler editorCtrl = new NodeEditorControler(editorView, Set.of(new MyNode()));
+        editorView.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         primaryStage.setScene(new Scene(editorView, 800, 600));
         primaryStage.show();
 

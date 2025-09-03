@@ -19,6 +19,7 @@ public class NodeEditorView extends Pane {
         searchBox.setVisible(false);
         
         getChildren().addAll(wiresPane, nodesPane, searchBox);
+        getStyleClass().add("node-editor");
     }
 
     public NodeEditorView() {
