@@ -1,17 +1,23 @@
 package violyte.nodes.view;
 
-public class NodeBoxInput extends NodeBoxField {    
+import javafx.geometry.Pos;
+import javafx.scene.shape.Circle;
+
+public class NodeBoxInput extends NodeBoxField {
+    
+    private Circle inputCircle;
+
     public NodeBoxInput(String labelText) {
         super(labelText);
-        /*DoubleBinding halfHeight = heightProperty().divide(2);
-        
-        getLabel().layoutXProperty().set(10);
-        getLabel().layoutYProperty().bind(halfHeight);
 
-        getHandle().layoutYProperty().bind(halfHeight);*/
+        inputCircle = new Circle(HANDLE_RADIUS);
 
-        setLeftAnchor(getHandle(), -HANDLE_RADIUS);
-        setLeftAnchor(getLabel(), 10.0);
+        inputCircle.getStyleClass().add("node-box-handle");
+
+        getChildren().add(inputCircle);
+
+        setAlignment(inputCircle, Pos.CENTER_LEFT);
+        inputCircle.setTranslateX(-HANDLE_RADIUS);
 
         getHandle().getStyleClass().add("node-box-input-handle");
         getStyleClass().add("node-box-input");
